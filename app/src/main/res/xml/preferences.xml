@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="https://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditTextPreference
+        android:id="@+id/zip_code_pref"
+        android:inputType="number"
+        android:maxLength="5"
+        android:maxLines="1"
+        android:singleLine="true"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="true"
+        app:dialogLayout="@layout/preference_edit_text"
+        app:dialogTitle="Enter Your Zip Code"
+        app:enabled="true"
+        app:key="ZIP_CODE"
+        app:title="Zip Code" />
+
+    <ListPreference
+        android:dialogTitle="Select Preferred Temperature Unit"
+        android:id="@+id/units_pref"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="true"
+        app:defaultValue="Fahrenheit"
+        app:entries="@array/temp_units_array"
+        app:entryValues="@array/temp_units_array"
+        app:key="TEMP_UNIT"
+        app:title="Units" />
+</PreferenceScreen>
