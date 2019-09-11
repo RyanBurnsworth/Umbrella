@@ -5,7 +5,7 @@ import org.jetbrains.anko.defaultSharedPreferences
 
 class PreferenceManager(private val context: Context) {
 
-    fun getZipCode() = context.defaultSharedPreferences.getString(ZIP_CODE, "")
+    fun getZipCode() = context.defaultSharedPreferences.getString(ZIP_CODE, "Celsius")
 
-    fun getTempUnits() = context.defaultSharedPreferences.getString(TEMP_UNIT, "")
+    fun getTempUnits() = context.defaultSharedPreferences.getString(TEMP_UNIT, "Fahrenheit")
 }

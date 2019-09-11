@@ -15,4 +15,14 @@ enum class TempUnit(private val value: String) {
     override fun toString(): String {
         return value
     }
+
+    companion object {
+        fun stringToTempUnit(string: String): TempUnit {
+            when (string) {
+                "Fahrenheit" -> return FAHRENHEIT
+                "Celsius" -> return CELSIUS
+            }
+            return FAHRENHEIT
+        }
+    }
 }

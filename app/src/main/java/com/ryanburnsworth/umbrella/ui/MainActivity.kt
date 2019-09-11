@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
 
     override fun onResume() {
         super.onResume()
-        ZipCodeService.getLatLongByZip(this, preferenceManager.getZipCode() ?: "", this)
+        val zipCode = preferenceManager.getZipCode() ?: ""
+        ZipCodeService.getLatLongByZip(this, zipCode, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -79,7 +80,11 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
 
     override fun onLocationFound(location: ZipLocation) {
         supportActionBar?.title = location.city + ", " + location.state
-        viewModel.listenForChanges(location.longitude, location.latitude, TempUnit.FAHRENHEIT)
+        viewModel.listenForChanges(
+            location.longitude,
+            location.latitude,
+            TempUnit.stringToTempUnit(preferenceManager.getTempUnits() ?: "Fahrenheit")
+        )
     }
 
     override fun onLocationNotFound() {
