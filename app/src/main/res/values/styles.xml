@@ -8,4 +8,39 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CurrentWeatherTemp" parent="TextAppearance.AppCompat.Display3">
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="CurrentWeatherConditions" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="SingleForecastText" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:padding">4dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="ForecastResponseDate" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:padding">4dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider</item>
+    </style>
 </resources>

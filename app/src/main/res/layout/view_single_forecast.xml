@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:padding="4dp">
+
+    <TextView
+        android:id="@+id/forecast_view_time"
+        style="@style/SingleForecastText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="4:00pm" />
+
+    <ImageView
+        android:id="@+id/forecast_view_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/forecast_view_temp"
+        style="@style/SingleForecastText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        tools:text="60&#xb0;" />
+</LinearLayout>

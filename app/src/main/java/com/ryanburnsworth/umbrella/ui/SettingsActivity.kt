@@ -9,7 +9,6 @@ import com.ryanburnsworth.umbrella.R
 import com.ryanburnsworth.umbrella.util.TEMP_UNIT
 import com.ryanburnsworth.umbrella.util.ZIP_CODE
 
-
 private const val TITLE_TAG = "Settings"
 
 class SettingsActivity : AppCompatActivity(),
@@ -42,9 +41,7 @@ class SettingsActivity : AppCompatActivity(),
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        if (supportFragmentManager.popBackStackImmediate()) {
-            return true
-        }
+        finish()
         return super.onSupportNavigateUp()
     }
 
@@ -98,6 +95,9 @@ class SettingsActivity : AppCompatActivity(),
             }
         }
 
+        /**
+         * Update the UI when a user changes their preference
+         */
         override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
             when (preference?.key ?: "") {
                 ZIP_CODE -> preference.let { it?.summary = newValue as String }

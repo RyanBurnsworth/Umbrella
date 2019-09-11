@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Umbrella</string>
     <string name="settings_title">Settings</string>
-    <string name="default_zip">None</string>
     <string name="default_temp_unit">Fahrenheit</string>
+    <string name="zip_code_not_found">Please enter a valid zip code</string>
+    <string name="temp_value">%s&#xb0;</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
 </resources>

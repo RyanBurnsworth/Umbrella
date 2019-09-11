@@ -11,12 +11,12 @@ data class ForecastCondition(
      * Text summary of weather condition
      * @return Summary
      */
-    var summary: String?,
+    @SerializedName("summary") var summary: String?,
     /**
      * Icon name of weather condition
      * @return Icon Name
      */
-    var icon: String?,
+    @SerializedName("icon") var icon: String?,
     /**
      * Temperature in degrees of [TempUnit] sent during request
      * @return Temperature
@@ -26,5 +26,15 @@ data class ForecastCondition(
      * Time/Date of Forecast Condition
      * @return Date
      */
-    var time: Date?
+    @SerializedName("time") var time: Date?,
+
+    /**
+     * returns a temperature as a string
+     */
+    var formattedTemp: String = "",
+
+    /**
+     * returns a formatted time (Example: 7:00PM)
+     */
+    var formattedTime: String = ""
 )
