@@ -3,6 +3,7 @@ package com.ryanburnsworth.umbrella
 import android.app.Application
 import com.ryanburnsworth.umbrella.data.APIServicesProvider
 import com.ryanburnsworth.umbrella.ui.viewmodel.MainActivityViewModel
+import com.ryanburnsworth.umbrella.util.PreferenceManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
@@ -13,6 +14,7 @@ class UmbrellaApplication : Application() {
 
     private val modules = module {
         single { APIServicesProvider() }
+        single { PreferenceManager(androidContext()) }
         viewModel { MainActivityViewModel(get()) }
     }
 

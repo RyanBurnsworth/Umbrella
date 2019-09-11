@@ -14,14 +14,16 @@ import com.ryanburnsworth.umbrella.data.model.ForecastCondition
 import com.ryanburnsworth.umbrella.data.model.TempUnit
 import com.ryanburnsworth.umbrella.ui.adapter.ForecastAdapter
 import com.ryanburnsworth.umbrella.ui.viewmodel.MainActivityViewModel
+import com.ryanburnsworth.umbrella.util.PreferenceManager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), ZipLocationListener {
-    // lazy injection of the MainActivityViewModel
     private val viewModel by viewModel<MainActivityViewModel>()
+    private val preferenceManager: PreferenceManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
 
     override fun onResume() {
         super.onResume()
-        ZipCodeService.getLatLongByZip(this, "46807", this)
+        ZipCodeService.getLatLongByZip(this, preferenceManager.getZipCode() ?: "", this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
