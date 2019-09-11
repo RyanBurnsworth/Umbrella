@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF9800</color>
-    <color name="colorPrimaryDark">#FF9800</color>
-    <color name="colorAccent">#FF9800</color>
+    <color name="colorPrimary">#757575</color>
+    <color name="colorPrimaryDark">#757575</color>
+    <color name="colorAccent">#757575</color>
     <color name="lt_grey">#757575</color>
     <color name="divider">#CCCCCC</color>
+    <color name="coolWeather">#03A9F4</color>
+    <color name="warmWeather">#FF9800</color>
 </resources>

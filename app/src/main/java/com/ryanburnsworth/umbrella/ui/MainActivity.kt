@@ -1,5 +1,6 @@
 package com.ryanburnsworth.umbrella.ui
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
         viewModel.currentForecast.observe(this, Observer {
             header_current_temp?.text = getString(R.string.temp_value, it.temp.toInt().toString())
             header_current_summary?.text = it.summary
+            updateUIColorByTemp(it.temp.toInt())
         })
 
         viewModel.hourlyForecast.observe(this, Observer {
@@ -90,5 +92,16 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
     override fun onLocationNotFound() {
         toast(R.string.zip_code_not_found)
         startActivity<SettingsActivity>()
+    }
+
+    private fun updateUIColorByTemp(temp: Int) {
+        val tempUnit = TempUnit.stringToTempUnit(preferenceManager.getTempUnits() ?: "")
+        if ((temp <= 16 && tempUnit == TempUnit.CELSIUS) || (temp <= 60 && tempUnit == TempUnit.FAHRENHEIT)) {
+            header_layout.background = ColorDrawable(resources.getColor(R.color.coolWeather))
+            supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.coolWeather)))
+        } else {
+            header_layout.background = ColorDrawable(resources.getColor(R.color.warmWeather))
+            supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.warmWeather)))
+        }
     }
 }
