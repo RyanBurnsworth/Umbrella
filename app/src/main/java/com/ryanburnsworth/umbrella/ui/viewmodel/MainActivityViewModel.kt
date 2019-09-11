@@ -19,7 +19,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -61,6 +60,19 @@ class MainActivityViewModel(private val apiService: APIServicesProvider) : ViewM
     }
 
     /**
+     * The UI is a warm color when the temp > 60F or 16C
+     * The UI is a cool color when the temp is <= 60F or 16C
+     * @param temp - current temperature
+     * @param tempUnit - user selected temperature unit
+     * @return true or false
+     */
+    fun isColorThemeWarm(temp: Int, tempUnit: TempUnit): Boolean {
+        if ((temp <= 16 && tempUnit == TempUnit.CELSIUS) || (temp <= 60 && tempUnit == TempUnit.FAHRENHEIT))
+            return false
+        return true
+    }
+
+    /**
      * @param hourlyResponse - An hourly response object from the server result
      * @return an arraylist containing hourly forecast conditions for today and tomorrow
      */
@@ -94,13 +106,31 @@ class MainActivityViewModel(private val apiService: APIServicesProvider) : ViewM
 
         hourlyForecastList.add(hourlyForecastToday)
         hourlyForecastList.add(hourlyForecastTomorrow)
-
         return hourlyForecastList
     }
 
     /**
+     * Returns the index position of the highest and lowest value in an ArrayList of Ints]
+     * @param forecastConditionsList - List of hourly forecast conditions
+     * @return an integer array containing [highTempIndex, lowTempIndex]
+     */
+    fun returnHighLowTempPositions(forecastConditionsList: ArrayList<ForecastCondition>): Array<Int> {
+        val tempList = forecastConditionsList.map { it.temp.roundToInt() }
+        if (tempList.size < 2) return arrayOf()
+
+        val highTempIndex = getIndexFromValue(tempList.sorted()[0], tempList as ArrayList<Int>)
+        val lowTempIndex = getIndexFromValue(tempList.sorted()[tempList.size - 1], tempList)
+
+        return arrayOf(highTempIndex, lowTempIndex)
+    }
+
+    private fun getIndexFromValue(value: Int, tempList: ArrayList<Int>) =
+        tempList.indexOf(value)
+
+    /**
      * Converts a SimpleDateFormat string into a readable timestamp
      * @param date - date string using 24 hour time
+     * @return a user friendly formatted time string
      */
     private fun setFormattedDate(date: String): String {
         val hour = date.substring(0, 2).toInt()

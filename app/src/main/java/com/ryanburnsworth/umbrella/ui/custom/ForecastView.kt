@@ -9,8 +9,6 @@ import com.bumptech.glide.Glide
 import com.ryanburnsworth.umbrella.R
 import com.ryanburnsworth.umbrella.data.APIServicesProvider
 import kotlinx.android.synthetic.main.view_single_forecast.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ForecastView @JvmOverloads constructor(
     context: Context,
@@ -34,8 +32,28 @@ class ForecastView @JvmOverloads constructor(
         this.forecast_view_time.text = time
     }
 
-    fun loadIcon(iconUrl: String) {
-        Glide.with(this).load(APIServicesProvider().iconApi.getUrlForIcon(iconUrl, false))
+    fun loadIcon(iconUrl: String, isHighlighted: Boolean = false) {
+        Glide.with(this).load(APIServicesProvider().iconApi.getUrlForIcon(iconUrl, isHighlighted))
             .into(forecast_view_icon)
+        if (!isHighlighted)
+            setDefaultIconColor()
+    }
+
+    fun setIconHighlightColor(isWarm: Boolean) {
+        if (isWarm) {
+            forecast_view_icon.setColorFilter(resources.getColor(R.color.warmWeather))
+            forecast_view_time.setTextColor(resources.getColor(R.color.warmWeather))
+            forecast_view_temp.setTextColor(resources.getColor(R.color.warmWeather))
+        } else {
+            forecast_view_icon.setColorFilter(resources.getColor(R.color.coolWeather))
+            forecast_view_time.setTextColor(resources.getColor(R.color.coolWeather))
+            forecast_view_temp.setTextColor(resources.getColor(R.color.coolWeather))
+        }
+    }
+
+    private fun setDefaultIconColor() {
+        forecast_view_icon.setColorFilter(resources.getColor(android.R.color.black))
+        forecast_view_time.setTextColor(resources.getColor(android.R.color.black))
+        forecast_view_temp.setTextColor(resources.getColor(android.R.color.black))
     }
 }

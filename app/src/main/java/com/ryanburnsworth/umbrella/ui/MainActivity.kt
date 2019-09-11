@@ -75,7 +75,10 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
     private fun initializeRecyclerView(
         hourlyForecast: ArrayList<ArrayList<ForecastCondition>>
     ) {
-        val adapter = ForecastAdapter(hourlyForecast)
+        val dayOneHighLowIndexSet = viewModel.returnHighLowTempPositions(hourlyForecast[0])
+        val dayTwoHighLowIndexSet = viewModel.returnHighLowTempPositions(hourlyForecast[1])
+
+        val adapter = ForecastAdapter(hourlyForecast, dayOneHighLowIndexSet + dayTwoHighLowIndexSet)
         weather_recycler_view.adapter = adapter
         weather_recycler_view.layoutManager = LinearLayoutManager(this)
     }
@@ -96,7 +99,8 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
 
     private fun updateUIColorByTemp(temp: Int) {
         val tempUnit = TempUnit.stringToTempUnit(preferenceManager.getTempUnits() ?: "")
-        if ((temp <= 16 && tempUnit == TempUnit.CELSIUS) || (temp <= 60 && tempUnit == TempUnit.FAHRENHEIT)) {
+
+        if (!viewModel.isColorThemeWarm(temp, tempUnit)) {
             header_layout.background = ColorDrawable(resources.getColor(R.color.coolWeather))
             supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.coolWeather)))
         } else {
