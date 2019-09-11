@@ -58,7 +58,7 @@ class ForecastAdapter(
                 forecastView.loadIcon(forecast[i].icon.toString())
 
                 // if the forecast index matches the high or low temp index set the icon highlight
-                if (position == 0 && tempIndices.size == 4) {
+                if (position == 0 && tempIndices.size == 4 && (tempIndices[DAY_ONE_LOW] != tempIndices[DAY_ONE_HIGH])) {
                     when (i) {
                         tempIndices[DAY_ONE_HIGH] -> {
                             forecastView.loadIcon(forecast[i].icon.toString(), true)
@@ -72,7 +72,7 @@ class ForecastAdapter(
                 }
 
                 // if the forecast index matches the high or low temp index set the icon highlight
-                if (position == 1 && tempIndices.size == 4) {
+                if (position == 1 && tempIndices.size == 4 && (tempIndices[DAY_TWO_LOW] != tempIndices[DAY_TWO_HIGH])) {
                     when (i) {
                         tempIndices[DAY_TWO_HIGH] -> {
                             forecastView.loadIcon(forecast[i].icon.toString(), true)
