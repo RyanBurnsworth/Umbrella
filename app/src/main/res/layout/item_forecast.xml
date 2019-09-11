@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             tools:text="Today" />
 
-        <View style="@style/Divider"></View>
+        <View style="@style/Divider" />
 
         <GridLayout
             android:id="@+id/forecast_grid"

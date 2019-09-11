@@ -15,7 +15,7 @@ import java.util.*
 class APIServicesProvider {
 
     /**
-     * Instance of ready to use [IconApi]
+     * Instance of ready to use [IconAPI]
      */
     val iconApi = IconAPI()
 

@@ -11,6 +11,11 @@ import com.ryanburnsworth.umbrella.ui.custom.ForecastView
 import com.ryanburnsworth.umbrella.util.DAY_COUNT
 import kotlinx.android.synthetic.main.item_forecast.view.*
 
+private const val DAY_ONE_HIGH = 0
+private const val DAY_ONE_LOW = 1
+private const val DAY_TWO_HIGH = 2
+private const val DAY_TWO_LOW = 3
+
 class ForecastAdapter(
     private val forecastList: ArrayList<ArrayList<ForecastCondition>>,
     private val tempIndices: Array<Int>
@@ -40,41 +45,42 @@ class ForecastAdapter(
             val gridLayout = forecast_grid
             val forecastDateTv = itemView.findViewById<TextView>(R.id.forecast_response_date)
 
+            // today = 0 and tomorrow = 1
             if (position == 0) forecastDateTv.text =
                 context.getString(R.string.today) else forecastDateTv.text = context.getString(
                 R.string.tomorrow
             )
 
-            for (fc in forecast.indices) {
+            for (i in forecast.indices) {
                 val forecastView = ForecastView(itemView.context)
-                forecastView.setTemp(forecast[fc].formattedTemp)
-                forecastView.setTime(forecast[fc].formattedTime)
-                forecastView.loadIcon(forecast[fc].icon.toString())
+                forecastView.setTemp(forecast[i].formattedTemp)
+                forecastView.setTime(forecast[i].formattedTime)
+                forecastView.loadIcon(forecast[i].icon.toString())
 
                 // if the forecast index matches the high or low temp index set the icon highlight
-                if (position == 0) {
-                    when (fc) {
-                        tempIndices[0] -> {
-                            forecastView.loadIcon(forecast[fc].icon.toString(), true)
-                            forecastView.setIconHighlightColor(true)
+                if (position == 0 && tempIndices.size == 4) {
+                    when (i) {
+                        tempIndices[DAY_ONE_HIGH] -> {
+                            forecastView.loadIcon(forecast[i].icon.toString(), true)
+                            forecastView.setHighlightColor(true)
                         }
-                        tempIndices[1] -> {
-                            forecastView.loadIcon(forecast[fc].icon.toString(), true)
-                            forecastView.setIconHighlightColor(false)
+                        tempIndices[DAY_ONE_LOW] -> {
+                            forecastView.loadIcon(forecast[i].icon.toString(), true)
+                            forecastView.setHighlightColor(false)
                         }
                     }
                 }
 
                 // if the forecast index matches the high or low temp index set the icon highlight
-                if (position == 1) {
-                    when (fc) {
-                        tempIndices[2] -> {
-                            forecastView.loadIcon(forecast[fc].icon.toString(), true)
-                            forecastView.setIconHighlightColor(true)
+                if (position == 1 && tempIndices.size == 4) {
+                    when (i) {
+                        tempIndices[DAY_TWO_HIGH] -> {
+                            forecastView.loadIcon(forecast[i].icon.toString(), true)
+                            forecastView.setHighlightColor(true)
                         }
-                        tempIndices[3] -> {
-                            forecastView.loadIcon(forecast[fc].icon.toString(), true)
-                            forecastView.setIconHighlightColor(false)
+                        tempIndices[DAY_TWO_LOW] -> {
+                            forecastView.loadIcon(forecast[i].icon.toString(), true)
+                            forecastView.setHighlightColor(false)
                         }
                     }
                 }

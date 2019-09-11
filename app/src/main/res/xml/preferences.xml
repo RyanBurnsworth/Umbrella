@@ -13,7 +13,7 @@
         app:dialogTitle="Enter Your Zip Code"
         app:enabled="true"
         app:key="ZIP_CODE"
-        app:title="Zip Code" />
+        app:title="@string/zip_code" />
 
     <ListPreference
         android:dialogTitle="Select Preferred Temperature Unit"
@@ -24,5 +24,5 @@
         app:entries="@array/temp_units_array"
         app:entryValues="@array/temp_units_array"
         app:key="TEMP_UNIT"
-        app:title="Units" />
+        app:title="@string/units" />
 </PreferenceScreen>

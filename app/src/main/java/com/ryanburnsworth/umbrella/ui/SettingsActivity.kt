@@ -9,7 +9,7 @@ import com.ryanburnsworth.umbrella.R
 import com.ryanburnsworth.umbrella.util.TEMP_UNIT
 import com.ryanburnsworth.umbrella.util.ZIP_CODE
 
-private const val TITLE_TAG = "Settings"
+private const val TITLE_TAG = "Umbrella"
 
 class SettingsActivity : AppCompatActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
@@ -27,7 +27,7 @@ class SettingsActivity : AppCompatActivity(),
         }
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.backStackEntryCount == 0) {
-                setTitle(R.string.settings_title)
+                setTitle(R.string.app_name)
             }
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
